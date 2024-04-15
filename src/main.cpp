@@ -45,12 +45,38 @@ ez::Drive chassis (
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+
+  auto consts = chassis.turnPID.constants_get();
+
+  void manualSetDrive(float Left, float Right){
+      chassis.drive_set(Left, Right);
+  }
+  ez::PID ClimbPID{consts.kp, consts.ki, consts.kd, consts.start_i, "ClimbPID"};
+
+  
+  void climbTask(){
+  pros::delay(2000);
+  while (true) {
+    if(chassis.drive_imu_get() > 180){
+      manualSetDrive(ClimbPID.compute(chassis.drive_imu_get()), -ClimbPID.compute(chassis.drive_imu_get()));
+    }else{
+      manualSetDrive(-ClimbPID.compute(chassis.drive_imu_get()), ClimbPID.compute(chassis.drive_imu_get()));
+    } 
+
+    pros::delay(ez::util::DELAY_TIME);
+  }
+}
+
+pros::Task ClimbTask(ClimbTask);
+
+
 void initialize() {
   //midOFmidOF
   
   
   //Print our branding over your terminal :D
   ez::ez_template_print();
+  ClimbPID.exit_condition_set(80, 50, 300, 150, 500, 500);
   
   pros::delay(500); // Stop the user from doing anything while legacy ports configure
 
@@ -142,8 +168,10 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
+
   
    while (true) {
+    bool climbAngleLock = false;
     /*/
     // PID Tuner
     // After you find values that you're happy with, you'll have to set them in auton.cpp
@@ -172,13 +200,23 @@ void opcontrol() {
     // Put more user control code here!
     // . . .
    /*/
-       chassis.opcontrol_tank(); // Tank control
+
+   if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
+    climbAngleLock = !climbAngleLock;
+   }
+
+   while(climbAngleLock){
+    chassis.drive_set(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y), master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+    ClimbPID.target_set(45);
+   }
+    chassis.opcontrol_tank(); // Tank control
 
     intakeControl();
     wingTeleControl();
     ptoTeleControl();
     climbReleaseTeleRelease();
     scooperTeleControl();
+
   
 
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME)
