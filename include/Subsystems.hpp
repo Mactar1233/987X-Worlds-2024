@@ -1,22 +1,20 @@
-void slapperControl();
 void intakeControl();
 void wingTeleControl();
-void blockerControl(bool state);
-void blockerTeleControl();  
-void BwingTeleControl();
-void chomperTelecontrol();
-void setIntake(int speed);
+void scooperTeleControl();
+void ptoTeleControl();
+void wingTeleControl2();
+void climbReleaseTeleRelease();
 void wingControl(bool state);
-void BwingControl(bool state);
-void bwingTeleControl2();
-void matchLoad(bool matchLoading, bool skills);
+void setIntake(int speed);
+void scooperControl(bool state);
+void ptoControl(bool state);
 
 //Defensive
 void riskyDef();
 void safeDef();
 void elimsDef();
 void safeSafe();
-
+void midSafe();
 
 //Offensive
 void sixBall();

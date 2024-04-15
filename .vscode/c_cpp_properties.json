@@ -5,7 +5,8 @@
       "includePath": [
         "${workspaceFolder}/**",
         "c:\\Users\\Macta\\Downloads\\EZ-Template-Example-Project-v3.0.0 (2)\\include",
-        "c:\\Users\\Macta\\OneDrive\\Documents\\987X States\\include"
+        "c:\\Users\\Macta\\OneDrive\\Documents\\987X States\\include",
+        "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds\\include"
       ],
       "defines": [
         "_DEBUG",
@@ -16,10 +17,10 @@
       "cStandard": "gnu11",
       "cppStandard": "gnu++20",
       "intelliSenseMode": "gcc-arm",
-      "compileCommands": "c:\\Users\\Macta\\OneDrive\\Documents\\987X States\\compile_commands.json",
+      "compileCommands": "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds\\compile_commands.json",
       "browse": {
         "path": [
-          "c:\\Users\\Macta\\OneDrive\\Documents\\987X States"
+          "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds"
         ],
         "limitSymbolsToIncludedHeaders": true,
         "databaseFilename": ""

@@ -1,4 +1,5 @@
 #include "main.h"
+#include "EZ-Template/auton.hpp"
 #include "autons.hpp"
 #include "pros/motors.h"
 
@@ -12,14 +13,14 @@
 ez::Drive chassis (
     // Left Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  {-1 ,-4, -14}
+  {-11 ,-12, -13}
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  ,{10, 9, 18}
+  ,{18, 19, 20}
 
   // IMU Port
-  ,11
+  ,10
 
   // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
   //    (or tracking wheel diameter)
@@ -65,13 +66,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    Auton("Example Drive\n\nDrive forward and come back.",  skills),
-        Auton("Example Turn\n\nTurn 3 times.", turn_example),
-    Auton("Drive and Turn\n\nDrive forward, turn, come back. ", drive_and_turn),
-    Auton("Drive and Turn\n\nSlow down during drive.", wait_until_change_speed),
-    Auton("Swing Example\n\nSwing in an 'S' curve", swing_example),
-    Auton("Combine all 3 movements", combining_movements),
-    Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
+    Auton("Safe WinPoint\n\nDescores Ball and Touches Bar",sixBall),
+    Auton("Mid Safe\n\n Descores Ball, Scores Preload, and Touches Bar", sixBall),
   });
 
   // Initialize chassis and auton selector
@@ -179,11 +175,10 @@ void opcontrol() {
        chassis.opcontrol_tank(); // Tank control
 
     intakeControl();
-    slapperControl();
     wingTeleControl();
-    blockerTeleControl();
-    chomperTelecontrol();
-    bwingTeleControl2();
+    ptoTeleControl();
+    climbReleaseTeleRelease();
+    scooperTeleControl();
   
 
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME)

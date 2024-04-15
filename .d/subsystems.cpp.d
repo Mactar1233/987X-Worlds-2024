@@ -65,17 +65,17 @@ bin/subsystems.cpp.o: src/subsystems.cpp include/main.h include/api.h \
  include/display/lv_objx/lv_arc.h include/display/lv_objx/lv_calendar.h \
  include/display/lv_objx/lv_spinbox.h include/display/lv_objx/lv_ta.h \
  include/pros/misc.h include/pros/motors.h include/pros/optical.h \
- include/pros/error.h include/pros/rtos.h include/pros/rotation.h \
+ include/pros/error.h include/pros/rotation.h include/pros/rtos.h \
  include/pros/screen.h include/pros/colors.h include/pros/vision.h \
  include/pros/adi.hpp include/pros/distance.hpp include/pros/distance.h \
  include/pros/gps.hpp include/pros/gps.h include/pros/imu.hpp \
- include/pros/imu.h include/pros/llemu.hpp include/pros/llemu.h \
- include/pros/misc.hpp include/pros/misc.h include/pros/motors.hpp \
- include/pros/motors.h include/pros/rtos.hpp include/pros/rtos.h \
- include/pros/optical.hpp include/pros/optical.h \
- include/pros/rotation.hpp include/pros/rotation.h include/pros/rtos.hpp \
- include/pros/screen.hpp include/pros/screen.h include/pros/vision.hpp \
- include/pros/vision.h include/pros/link.hpp include/pros/link.h \
+ include/pros/imu.h include/pros/link.hpp include/pros/link.h \
+ include/pros/llemu.hpp include/pros/llemu.h include/pros/misc.hpp \
+ include/pros/misc.h include/pros/motors.hpp include/pros/motors.h \
+ include/pros/rtos.hpp include/pros/rtos.h include/pros/optical.hpp \
+ include/pros/optical.h include/pros/rotation.hpp include/pros/rotation.h \
+ include/pros/rtos.hpp include/pros/screen.hpp include/pros/screen.h \
+ include/pros/vision.hpp include/pros/vision.h \
  include/EZ-Template/api.hpp include/EZ-Template/PID.hpp \
  include/EZ-Template/util.hpp include/api.h include/EZ-Template/auton.hpp \
  include/EZ-Template/auton_selector.hpp \
@@ -207,8 +207,8 @@ include/pros/misc.h:
 include/pros/motors.h:
 include/pros/optical.h:
 include/pros/error.h:
-include/pros/rtos.h:
 include/pros/rotation.h:
+include/pros/rtos.h:
 include/pros/screen.h:
 include/pros/colors.h:
 include/pros/vision.h:
@@ -219,6 +219,8 @@ include/pros/gps.hpp:
 include/pros/gps.h:
 include/pros/imu.hpp:
 include/pros/imu.h:
+include/pros/link.hpp:
+include/pros/link.h:
 include/pros/llemu.hpp:
 include/pros/llemu.h:
 include/pros/misc.hpp:
@@ -236,8 +238,6 @@ include/pros/screen.hpp:
 include/pros/screen.h:
 include/pros/vision.hpp:
 include/pros/vision.h:
-include/pros/link.hpp:
-include/pros/link.h:
 include/EZ-Template/api.hpp:
 include/EZ-Template/PID.hpp:
 include/EZ-Template/util.hpp:

@@ -4,50 +4,29 @@
 #include "pros/motors.h"
 #include "pros/motors.hpp"
 
-pros::Motor catapult(8, pros::E_MOTOR_GEARSET_36, false,
-                     pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor Intake(3, pros::E_MOTOR_GEARSET_06, false,
+pros::Motor Intake1(14, pros::E_MOTOR_GEARSET_06, false,
                    pros::E_MOTOR_ENCODER_DEGREES);
-//pros::Motor Intake2(3, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);    
+pros::Motor Intake2(17, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);    
 
-pros::ADIDigitalOut wingActuation('B');
-pros::ADIDigitalOut blockerActuation('C');
-pros::ADIDigitalOut chomperactuation('E');
-pros::ADIDigitalOut BwingActuation('A');
+pros::ADIDigitalOut wingActuation('D');
+pros::ADIDigitalOut PTO('B');
+pros::ADIDigitalOut ClimbRelease('A');
+pros::ADIDigitalOut Scooper('C');
 
-//pros::Motor_Group Intake({Intake1, Intake2});
+pros::Motor_Group Intake({Intake1, Intake2});
 
 bool climberLock = false;
-bool blockerState = false;
-bool bWingState = false;
-int Rumblecount = 0;
-bool drivermatchloading = false;
+bool ptoState = false;
+bool WingState = false;
 
 void setIntake(int speed) { Intake.move_voltage(speed * 120); }
 
 void wingControl(bool state) { wingActuation.set_value(state); }
 
-void BwingControl(bool state){ BwingActuation.set_value(state); }
+void scooperControl(bool state){ Scooper.set_value(state); }
 
-void blockerControl(bool state) { blockerActuation.set_value(state); }
+void ptoControl(bool state) { PTO.set_value(state); }
 
-void matchLoad(bool matchLoading, bool skills) {
-  if (matchLoading == true) {
-    catapult.move_voltage(12000);
-    if(skills == true){
-      catapult.move_voltage(12000);
-    }
-  } else {
-    catapult.move_voltage(0);
-  }
-}
-
-void slapperControl() {
-  if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN  )) {
-    drivermatchloading = !drivermatchloading;
-    matchLoad(drivermatchloading, false);
-  }
-}
 
 void intakeControl() {
   setIntake((master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) -
@@ -55,33 +34,34 @@ void intakeControl() {
             100);
 }
 
-void wingTeleControl() {
-    BwingControl(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+void scooperTeleControl() {
+    scooperControl(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
   }
 
-void BwingTeleControl(){
+void wingTeleControl(){
 
-BwingControl(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
+wingControl(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
 }
-void blockerTeleControl(){
-  if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
-    blockerState = !blockerState;
-  }
-
-  blockerActuation.set_value(blockerState);
-}
-
-void chomperTelecontrol(){
+void ptoTeleControl(){
   if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
-      chomperactuation.set_value(true);
-
+    ptoState = !ptoState;
   }
+
+  PTO.set_value(ptoState);
 }
 
-void bwingTeleControl2(){
-  if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
-    bWingState = !bWingState;
+void wingTeleControl2(){
+  if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+    WingState = !WingState;
   }
 
-  wingActuation.set_value(bWingState);
+  wingActuation.set_value(WingState);
+}
+
+void climbReleaseTeleRelease(){
+    if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
+    climberLock = !climberLock;
+  }
+
+  ClimbRelease.set_value(climberLock);
 }
