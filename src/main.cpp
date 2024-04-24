@@ -47,19 +47,20 @@ ez::Drive chassis (
  * to keep execution time for this mode under a few seconds.
  */
 
-  auto consts = chassis.turnPID.constants_get();
-
   void manualSetDrive(float Left, float Right){
       chassis.drive_set(Left, Right);
   }
 
       bool climbAngleLock = false;
 
-  ez::PID ClimbPID{consts.kp, consts.ki, consts.kd, consts.start_i, "ClimbPID"};
+  ez::PID ClimbPID{};
 
   
 void climbTask(){
   pros::delay(2000);
+  auto consts = chassis.turnPID.constants_get();
+  ClimbPID.constants_set(consts.kp, consts.ki, consts.kd, consts.start_i);
+
   double output = 0.0;
   while (true) {
     if (chassis.drive_imu_get() > 180) {
