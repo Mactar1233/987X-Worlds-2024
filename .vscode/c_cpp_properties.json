@@ -6,21 +6,22 @@
         "${workspaceFolder}/**",
         "c:\\Users\\Macta\\Downloads\\EZ-Template-Example-Project-v3.0.0 (2)\\include",
         "c:\\Users\\Macta\\OneDrive\\Documents\\987X States\\include",
-        "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds\\include"
+        "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds\\include",
+        "c:\\Users\\Mactar\\Documents\\987X-Worlds-2024\\include"
       ],
       "defines": [
         "_DEBUG",
         "UNICODE",
         "_UNICODE"
       ],
-      "compilerPath": "c:\\Users\\Macta\\AppData\\Roaming\\Code\\User\\globalStorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\arm-none-eabi-g++",
+      "compilerPath": "C:\\Program Files\\PROS\\toolchain\\usr\\bin\\arm-none-eabi-g++",
       "cStandard": "gnu11",
       "cppStandard": "gnu++20",
       "intelliSenseMode": "gcc-arm",
       "compileCommands": "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds\\compile_commands.json",
       "browse": {
         "path": [
-          "c:\\Users\\Macta\\OneDrive\\Documents\\987X Worlds"
+          "c:\\Users\\Mactar\\Documents\\987X-Worlds-2024"
         ],
         "limitSymbolsToIncludedHeaders": true,
         "databaseFilename": ""
