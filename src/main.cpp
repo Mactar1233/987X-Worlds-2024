@@ -1,6 +1,7 @@
 #include "main.h"
 #include "EZ-Template/auton.hpp"
 #include "autons.hpp"
+#include "pros/misc.h"
 #include "pros/motors.h"
 
 /////
@@ -51,23 +52,36 @@ ez::Drive chassis (
   void manualSetDrive(float Left, float Right){
       chassis.drive_set(Left, Right);
   }
+
+      bool climbAngleLock = false;
+
   ez::PID ClimbPID{consts.kp, consts.ki, consts.kd, consts.start_i, "ClimbPID"};
 
   
-  void climbTask(){
+void climbTask(){
   pros::delay(2000);
+  double output = 0.0;
   while (true) {
-    if(chassis.drive_imu_get() > 180){
-      manualSetDrive(ClimbPID.compute(chassis.drive_imu_get()), -ClimbPID.compute(chassis.drive_imu_get()));
-    }else{
-      manualSetDrive(-ClimbPID.compute(chassis.drive_imu_get()), ClimbPID.compute(chassis.drive_imu_get()));
-    } 
+    if (chassis.drive_imu_get() > 180) {
+      ClimbPID.target_set(180);
+    }
+    else {
+      ClimbPID.target_set(0);
+    }
+
+    output = ClimbPID.compute(chassis.drive_imu_get());
+
+    if (!climbAngleLock){
+      output = 0.0;
+    }
+
+    manualSetDrive(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) + output, master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) - output);
 
     pros::delay(ez::util::DELAY_TIME);
   }
 }
 
-pros::Task ClimbTask(ClimbTask);
+pros::Task ClimbTask(climbTask);
 
 
 void initialize() {
@@ -171,8 +185,7 @@ void opcontrol() {
 
   
    while (true) {
-    bool climbAngleLock = false;
-    /*/
+        /*/
     // PID Tuner
     // After you find values that you're happy with, you'll have to set them in auton.cpp
     if (!pros::competition::is_connected()) { 
@@ -205,17 +218,12 @@ void opcontrol() {
     climbAngleLock = !climbAngleLock;
    }
 
-   while(climbAngleLock){
-    chassis.drive_set(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y), master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
-    ClimbPID.target_set(45);
-   }
-    chassis.opcontrol_tank(); // Tank control
-
     intakeControl();
     wingTeleControl();
     ptoTeleControl();
     climbReleaseTeleRelease();
     scooperTeleControl();
+    climbTask();
 
   
 
