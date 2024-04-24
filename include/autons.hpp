@@ -21,6 +21,6 @@ void sixBall();
 void riskyDef();
 void safeDef();
 void midOF();
-
+void david();
 
 void default_constants();

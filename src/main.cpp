@@ -66,8 +66,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    Auton("Safe WinPoint\n\nDescores Ball and Touches Bar",sixBall),
-    Auton("Mid Safe\n\n Descores Ball, Scores Preload, and Touches Bar", sixBall),
+    Auton("David AUTO\n\nRIGO SAID OFFENSIVE WIN POINT",david),
+    Auton("Mid Safe\n\n Descores Ball, Scores Preload, and Touches Bar",riskyOf),
   });
 
   // Initialize chassis and auton selector

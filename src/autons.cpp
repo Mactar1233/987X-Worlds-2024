@@ -305,29 +305,36 @@ chassis.pid_turn_set(20_deg,TURN_SPEED);
 chassis.pid_wait();
 scooperControl(false);
 wingControl(false);
-chassis.pid_drive_set(50_in,DRIVE_SPEED,true);
+chassis.pid_drive_set(54_in,DRIVE_SPEED,true);
 pros::delay(500);
 chassis.pid_wait();
-chassis.pid_turn_set(90_deg,TURN_SPEED);
+//chassis.pid_turn_set(90_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(30_in,DRIVE_SPEED);
-setIntake(-100);
+setIntake(0);
+chassis.pid_drive_set(-58.5_in,DRIVE_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(-20_in,DRIVE_SPEED);
+//chassis.pid_drive_set(-20_in,DRIVE_SPEED);
 chassis.pid_wait();
-chassis.pid_turn_set(30_deg,TURN_SPEED);
+//chassis.pid_turn_set(30_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(-53_in,DRIVE_SPEED);
+//chassis.pid_drive_set(-53_in,DRIVE_SPEED);
 chassis.pid_wait();
 chassis.pid_turn_set(-45_deg,TURN_SPEED);
+chassis.pid_wait();
+chassis.pid_drive_set(15_in,DRIVE_SPEED);
+chassis.pid_wait();
 scooperControl(true);
+chassis.pid_drive_set(-20_in,DRIVE_SPEED);
+chassis.pid_wait();
+chassis.pid_drive_set(10_in,DRIVE_SPEED);
+scooperControl(false);
 chassis.pid_wait();
 chassis.pid_drive_set(-10_in,DRIVE_SPEED);
 chassis.pid_wait();
 chassis.pid_turn_set(90_deg,TURN_SPEED);
 chassis.pid_wait();
-scooperControl(false);
-chassis.pid_drive_set(30.5_in,DRIVE_SPEED);
+setIntake(-100);
+chassis.pid_drive_set(28.5_in,DRIVE_SPEED);
 chassis.pid_wait();
 
 
@@ -340,56 +347,63 @@ chassis.pid_wait();
 }
 void sixBall(){
 setIntake(100);
-chassis.pid_drive_set(10_in,DRIVE_SPEED);
+scooperControl(true);
+pros::delay(500);
+scooperControl(false);
+chassis.pid_drive_set(11_in,DRIVE_SPEED);
 chassis.pid_wait();
-setIntake(0);
 chassis.pid_drive_set(-35_in,DRIVE_SPEED);
 chassis.pid_wait();
+setIntake(0);
 chassis.pid_turn_set(-45_deg,TURN_SPEED);
 chassis.pid_wait();
 scooperControl(true);
-chassis.pid_drive_set(-25_in,DRIVE_SPEED);
+chassis.pid_drive_set(-22_in,DRIVE_SPEED);
 chassis.pid_wait();
 scooperControl(false);
-chassis.pid_drive_set(5_in,DRIVE_SPEED);
+chassis.pid_drive_set(10_in,DRIVE_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(-10_in,DRIVE_SPEED);
+chassis.pid_drive_set(-18_in,DRIVE_SPEED);
 chassis.pid_wait();
 chassis.pid_turn_set(-90_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(-20_in,DRIVE_SPEED);
+chassis.pid_drive_set(-20_in,127);
 chassis.pid_wait();
-chassis.pid_drive_set(15_in,DRIVE_SPEED);
+chassis.pid_drive_set(10_in,DRIVE_SPEED);
 chassis.pid_wait();
-chassis.pid_turn_set(90_deg,70);
+chassis.pid_turn_set(90_deg,80);
 chassis.pid_wait();
+wingControl(true);
 setIntake(-100);
-chassis.pid_drive_set(20_in,DRIVE_SPEED);
+chassis.pid_drive_set(20_in,127);
 
 chassis.pid_wait();
-chassis.pid_drive_set(-13_in,DRIVE_SPEED);
+wingControl(false);
+chassis.pid_drive_set(-11_in,DRIVE_SPEED);
 chassis.pid_wait();
 setIntake(100);
 chassis.pid_turn_set(20_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(50_in,127);
+chassis.pid_drive_set(51_in,127);
 chassis.pid_wait();
 setIntake(0);
-chassis.pid_turn_set(150_deg,TURN_SPEED);
+chassis.pid_turn_set(160_deg,TURN_SPEED);
 chassis.pid_wait();
 setIntake(-100);
-chassis.pid_drive_set(10_in,DRIVE_SPEED);
+chassis.pid_drive_set(13_in,DRIVE_SPEED);
 chassis.pid_wait();
 setIntake(100);
-chassis.pid_turn_set(45_deg,TURN_SPEED);
+chassis.pid_turn_set(40_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(25_in,127);
+chassis.pid_drive_set(27_in,127);
 chassis.pid_wait();
 chassis.pid_turn_set(180_deg,TURN_SPEED);
 chassis.pid_wait();
 wingControl(true);
 setIntake(-100);
 chassis.pid_drive_set(40_in,127);
+chassis.pid_wait();
+chassis.pid_drive_set(-10_in,DRIVE_SPEED);
 chassis.pid_wait();
 
 
@@ -401,3 +415,168 @@ chassis.pid_wait();
 
 
 }
+
+
+
+void  riskyOf(){
+  setIntake(100);
+chassis.pid_drive_set(67_in,DRIVE_SPEED);
+chassis.pid_wait();
+chassis.pid_turn_set(133_deg,TURN_SPEED);
+chassis.drive_angle_set(0);
+chassis.pid_wait();
+setIntake(-100);
+wingControl(true);
+chassis.pid_drive_set(35_in,DRIVE_SPEED);
+chassis.pid_wait();
+chassis.pid_drive_set(-10_in,DRIVE_SPEED);
+chassis.pid_wait();
+chassis.pid_turn_set(268_deg,TURN_SPEED);
+chassis.pid_wait();
+chassis.pid_drive_set(25_in,DRIVE_SPEED);
+chassis.pid_wait();
+
+
+
+
+
+
+
+
+
+}
+
+
+
+void david(){
+
+  
+  setIntake(100);
+
+  scooperControl(true);
+  wingControl(true);
+  pros::delay(500);
+  wingControl(false);
+  scooperControl(false);
+
+  chassis.pid_drive_set(64_in,127);
+  chassis.pid_wait();
+  pros::delay(50);
+  setIntake(0);
+  chassis.pid_turn_set(133_deg,TURN_SPEED);
+  chassis.pid_wait();
+  setIntake(-100);
+  wingControl(true);
+  chassis.pid_drive_set(29_in,DRIVE_SPEED);
+  chassis.pid_wait();
+  pros::delay(100);
+  wingControl(false);
+  chassis.pid_turn_set(269_deg,TURN_SPEED);
+  chassis.pid_wait();
+  setIntake(100);
+  chassis.pid_drive_set(29_in,127);
+  chassis.pid_wait();
+  setIntake(0);
+  chassis.pid_turn_set(134_deg,TURN_SPEED);
+  chassis.pid_wait();
+  setIntake(-100);
+  chassis.pid_drive_set(18_in,DRIVE_SPEED);
+  chassis.pid_wait();
+  chassis.pid_turn_set(210_deg,TURN_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(28_in,DRIVE_SPEED);
+  chassis.pid_wait();
+  chassis.pid_turn_set(296_deg,TURN_SPEED);
+  chassis.pid_wait();
+  setIntake(100);
+  chassis.pid_drive_set(27_in,DRIVE_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-45_in,127);
+  chassis.pid_wait();
+  scooperControl(true);
+  chassis.pid_turn_set(80_deg,TURN_SPEED);
+  chassis.pid_wait();
+  scooperControl(false);
+  setIntake(-100);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -55_deg, 127, 55);
+  chassis.pid_wait();
+
+
+  
+
+  
+  
+
+  
+  
+  
+
+
+
+
+  /*chassis.pid_turn_set(-150_deg,TURN_SPEED);
+  chassis.drive_angle_set(90);
+  chassis.pid_wait();
+
+  scooperControl(false);
+
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 55_deg, SWING_SPEED, 45);
+  chassis.pid_wait();
+  
+  chassis.pid_drive_set(9_in,DRIVE_SPEED);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-140_deg,TURN_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(20_in, DRIVE_SPEED);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-75_deg,TURN_SPEED);
+  chassis.pid_wait();
+  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*chassis.pid_drive_set(9_in,DRIVE_SPEED);
+  scooperControl(true);
+  chassis.pid_wait();
+  scooperControl(false);
+
+
+  setIntake(-100);
+
+  chassis.pid_swing_set(ez::LEFT_SWING, 50_deg, SWING_SPEED, 45);
+
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::LEFT_SWING,-10_deg, SWING_SPEED, 30);
+  
+  chassis.pid_wait();
+
+ chassis.pid_turn_set(-150_deg,TURN_SPEED);
+  chassis.drive_angle_set(90); 
+  scooperControl(true);
+  chassis.pid_wait();
+  scooperControl(false);
+  */
+
+
+
+
+  
+
+}
+
+
+
+

@@ -20,6 +20,7 @@ void midSafe();
 void sixBall();
 void riskyOf();
 void midOF();
+void david();
 
 
 void safeSkills();
